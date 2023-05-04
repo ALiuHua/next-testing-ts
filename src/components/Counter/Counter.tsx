@@ -34,7 +34,10 @@ export function Counter({
       <span>Current Count: {counter}</span>
       <button
         onClick={() => {
-          setCounter(counter + incrementor);
+          console.log(counter + incrementor);
+          counter + incrementor > 35
+            ? setCounter(35)
+            : setCounter(counter + incrementor);
         }}
       >
         +

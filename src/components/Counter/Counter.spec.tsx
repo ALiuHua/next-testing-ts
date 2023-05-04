@@ -108,3 +108,23 @@ describe("Counter 2", () => {
  *    getByLabelText("Incrementor")  选中的是label对应的form control
  *
  */
+
+describe("Counter3", () => {
+  describe("initial render with current count 12", () => {
+    test("render Current Count 12", () => {
+      render(<Counter defaultCount={12} description="My Counter" />);
+      expect(screen.getByText("Current Count: 12")).toBeInTheDocument();
+    });
+  });
+
+  describe("initialized with defaultCount 12 and incrementor is 13 ; maxium current count is 35", () => {
+    test("the maxium current count is 35", async () => {
+      render(<Counter defaultCount={12} description="My Counter" />);
+      await user.clear(screen.getByLabelText("Incrementor"));
+      await user.type(screen.getByLabelText("Incrementor"), "13");
+      await user.click(screen.getByRole("button", { name: "+" }));
+      await user.click(screen.getByRole("button", { name: "+" }));
+      expect(screen.getByText("Current Count: 35")).toBeInTheDocument();
+    });
+  });
+});
